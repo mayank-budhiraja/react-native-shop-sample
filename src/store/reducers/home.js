@@ -1,12 +1,12 @@
 import actions from '../constants';
 
 const INITIAL_STATE = {
-  feedData: 'string',
+  feedData: [],
 };
 
 const home = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case actions.GET_FEED_DATA:
+    case actions.CREATE_STORE:
       return {...state, feedData: action.payload};
     default:
       return state;

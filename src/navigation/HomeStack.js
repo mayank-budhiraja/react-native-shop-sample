@@ -8,7 +8,6 @@ import Login from '../screens/Login';
 const Stack = createStackNavigator();
 
 const HomeStack = ({isAuthenticated}) => {
-  console.log(isAuthenticated)
   return isAuthenticated ? (
     <Stack.Navigator screenOptions={{headerShown: false}}>
       <Stack.Screen name={screenNames.HOME} component={Home} />

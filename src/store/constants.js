@@ -1,5 +1,5 @@
 const actions = {
-    GET_FEED_DATA: 'GET_FEED_DATA',
+    CREATE_STORE: 'CREATE_STORE',
     CHECK_AUTH: 'CHECK_AUTH',
     LOG_IN: 'LOG_IN'
     

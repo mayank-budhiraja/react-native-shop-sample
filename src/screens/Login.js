@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, TextInput, StyleSheet, Button} from 'react-native';
+import {View, TextInput, StyleSheet, Button} from 'react-native';
 import colors from '../constants/colors';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {connect} from 'react-redux';

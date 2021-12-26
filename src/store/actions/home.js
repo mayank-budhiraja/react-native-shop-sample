@@ -1,15 +1,14 @@
 import actions from '../constants';
 
-//this should go into redux actions
-const getFeedData = (check) => {
+const createStore = (data) => {
   return async (dispatch) => {
     dispatch({
-      type: actions.GET_FEED_DATA,
-      payload: check,
+      type: actions.CREATE_STORE,
+      payload: data,
     });
   };
 };
 
 export default {
-  getFeedData,
+  createStore,
 };
