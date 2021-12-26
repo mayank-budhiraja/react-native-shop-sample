@@ -9,7 +9,6 @@ class Home extends React.PureComponent {
   }
   
   render() {
-    console.log('findThis', this.props.feedData)
     return (
       <View>
           <Text> working</Text>

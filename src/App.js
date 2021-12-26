@@ -1,21 +1,18 @@
 import React from 'react';
-import {StyleSheet} from 'react-native';
 
 import {PersistGate} from 'redux-persist/es/integration/react';
 import {Provider} from 'react-redux';
-import {store, persistor} from './src/store';
+import {store, persistor} from './store';
 
 import {NavigationContainer} from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
-import screenNames from './src/constants/navigation';
-import Home from './src/screens/Home';
-import SETTINGS from './src/screens/SETTINGS';
+import screenNames from './constants/navigation';
+import HomeStack from './navigation/HomeStack';
+import SETTINGS from './screens/SETTINGS';
 import Icon from 'react-native-vector-icons/Ionicons';
-import colors from './src/constants/colors';
+import colors from './constants/colors';
 
-const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
 const App = () => {
@@ -24,7 +21,7 @@ const App = () => {
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
           <NavigationContainer>
-            <Tab.Navigator>
+            <Tab.Navigator screenOptions={{headerShown: false}}>
               <Tab.Screen
                 name={screenNames.HOMESTACK}
                 component={HomeStack}
@@ -79,14 +76,4 @@ const App = () => {
   );
 };
 
-function HomeStack() {
-  return (
-    <Stack.Navigator screenOptions={{headerShown: false}}>
-      <Stack.Screen name={screenNames.HOME} component={Home} />
-    </Stack.Navigator>
-  );
-}
-
 export default App;
-
-const styles = StyleSheet.create({});
