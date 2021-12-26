@@ -1,13 +1,13 @@
 import actions from '../constants';
 
 const INITIAL_STATE = {
-  isAuthenticated: true,
+  isAuthenticated: false,
 };
 
 const user = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case actions.CHECK_AUTH:
-      return {...state, feedData: action.payload};
+    case actions.LOG_IN:
+      return {...state, isAuthenticated: action.payload};
     default:
       return state;
   }

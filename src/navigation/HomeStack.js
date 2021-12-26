@@ -8,24 +8,21 @@ import Login from '../screens/Login';
 const Stack = createStackNavigator();
 
 const HomeStack = ({isAuthenticated}) => {
-  if (isAuthenticated) {
-    return (
-      <Stack.Navigator screenOptions={{headerShown: false}}>
-        <Stack.Screen name={screenNames.HOME} component={Home} />
-      </Stack.Navigator>
-    );
-  } else {
-    return (
-      <Stack.Navigator screenOptions={{headerShown: false}}>
-        <Stack.Screen name={screenNames.LOGIN} component={Login} />
-      </Stack.Navigator>
-    );
-  }
+  console.log(isAuthenticated)
+  return isAuthenticated ? (
+    <Stack.Navigator screenOptions={{headerShown: false}}>
+      <Stack.Screen name={screenNames.HOME} component={Home} />
+    </Stack.Navigator>
+  ) : (
+    <Stack.Navigator screenOptions={{headerShown: false}}>
+      <Stack.Screen name={screenNames.LOGIN} component={Login} />
+    </Stack.Navigator>
+  );
 };
 
 const mapStateToProps = (state) => {
   return {
-    isAuthenticated: state.user.isAuthenticated
+    isAuthenticated: state.user.isAuthenticated,
   };
 };
 
