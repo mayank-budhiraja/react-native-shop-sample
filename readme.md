@@ -1,13 +1,19 @@
-
 Next: 
+
+- Home List Store - Done
+
 - Create Store
-    - Name and Bio
-- List Store
-    - Add products to the store
-        - Name
-        - description
-        - price
-        - tags
-        - inventory check
-    - View all products
-    - Delete and edit products
+    - Name and Bio - done 
+
+- View Store - done
+    - Button - Add products - done
+    - Button/Flatlist - View all products
+        - Fix product Card
+
+- Add products - done
+    - used for both create and edit products - done
+
+- View Product 
+    - Add elements to the page - done
+    - Add delete option - done
+    - Add edit option - done

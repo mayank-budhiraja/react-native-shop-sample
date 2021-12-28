@@ -4,13 +4,19 @@ import {connect} from 'react-redux';
 import screenNames from '../constants/navigation';
 import Home from '../screens/Home';
 import Login from '../screens/Login';
+import CreateStore from '../screens/CreateStore';
+import ViewStore from '../screens/ViewStore';
+import ViewProduct from '../screens/ViewProduct';
 
 const Stack = createStackNavigator();
 
 const HomeStack = ({isAuthenticated}) => {
   return isAuthenticated ? (
-    <Stack.Navigator screenOptions={{headerShown: false}}>
+    <Stack.Navigator initialRouteName={screenNames.HOME} screenOptions={{headerShown: false}}>
       <Stack.Screen name={screenNames.HOME} component={Home} />
+      <Stack.Screen name={screenNames.CREATE_STORE} component={CreateStore} />
+      <Stack.Screen name={screenNames.VIEW_STORE} component={ViewStore} />
+      <Stack.Screen name={screenNames.VIEW_PRODUCT} component={ViewProduct} />
     </Stack.Navigator>
   ) : (
     <Stack.Navigator screenOptions={{headerShown: false}}>

@@ -4,31 +4,29 @@ import colors from '../constants/colors';
 import {connect} from 'react-redux';
 import {home} from '../store/actions';
 import Card from '../components/Card';
-
-const storeData = [
-  {
-    id: 1,
-    title: 'Store A',
-    desc: 'Example A ............',
-  },
-  {
-    id: 2,
-    title: 'Store B',
-    desc: 'Example B.............',
-  }
-]
+import screenNames from '../constants/navigation';
+import storeData from '../utils/sample';
 
 class Home extends React.PureComponent {
   constructor(props) {
     super(props);
   }
 
+  componentDidMount(){
+    this.props.createDataStore(storeData);
+  }
+
   createStore = () => {
-    Alert.alert('create store');
+    this.props.navigation.navigate(screenNames.CREATE_STORE)
   };
 
+  viewStore = (info) => {
+    this.props.selectedStore(info)
+    this.props.navigation.navigate(screenNames.VIEW_STORE)
+  }
+
   renderItem = ({item}) => {
-    return <Card data={item}/>
+    return <Card data={item} onClick={() => this.viewStore(item.id)}/>
   };
 
   render() {
@@ -36,10 +34,10 @@ class Home extends React.PureComponent {
     return (
       <View>
         <View>
-          {storeData ? (
+          {this.props.feedData ? (
             <FlatList
               style={styles.container}
-              data={storeData}
+              data={this.props.feedData}
               renderItem={this.renderItem}
               keyExtractor={(item, index) => item.id.toString()}
             />
@@ -51,7 +49,7 @@ class Home extends React.PureComponent {
           <Button
             style={styles.Button}
             title="Create Store"
-            onPress={() => createStore()}>
+            onPress={() => this.createStore()}>
             Create Store
           </Button>
         </View>
@@ -81,7 +79,8 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = {
-  createStore: home.createStore,
+  createDataStore: home.createStore,
+  selectedStore: home.selectedStore
 };
 
 const HomeWrapper = connect(mapStateToProps, mapDispatchToProps)(Home);
