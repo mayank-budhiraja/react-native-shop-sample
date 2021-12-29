@@ -19,9 +19,10 @@ export default NativeButton;
 const styles = StyleSheet.create({
   Button: {
     color: colors.app_primary,
+    height: 100
   },
   ButtonContainer: {
-    flexDirection: 'row',
+    
     justifyContent: 'space-evenly',
     margin: 10,
   },

@@ -5,53 +5,40 @@ import {connect} from 'react-redux';
 import NativeButton from '../components/NativeButton';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-class ViewProduct extends React.PureComponent {
+class AddProduct extends React.PureComponent {
   constructor(props) {
     super(props);
   }
 
-  componentDidMount() {
-    this.props.getProductDetails(this.props.productID);
-  }
+  componentDidMount() {}
 
-  deleteProduct = () => {};
-
-  saveProduct = () => {}
+  saveProduct = () => {};
 
   renderComponent = () => {
     return (
       <View>
         <View style={styles.header}>
-          <Text>Product Screen</Text>
+          <Text>Add Product</Text>
         </View>
         <View style={[styles.container, styles.mainContainer]}>
           <View style={styles.container}>
             <Text style={styles.text}> Name</Text>
-            <TextInput style={styles.textInputContainer}>
-              {this.props.productData.name}
-            </TextInput>
+            <TextInput style={styles.textInputContainer}></TextInput>
           </View>
           <View style={styles.container}>
             <Text style={styles.text}> Description</Text>
-            <TextInput style={styles.textInputContainer}>
-              {this.props.productData.description}
-            </TextInput>
+            <TextInput style={styles.textInputContainer}></TextInput>
           </View>
           <View style={styles.container}>
             <Text style={styles.text}> Product ID </Text>
-            <TextInput style={styles.textInputContainer}>
-              {this.props.productData.product_ID}
-            </TextInput>
+            <TextInput style={styles.textInputContainer}></TextInput>
           </View>
           <View style={styles.container}>
             <Text style={styles.text}> Price </Text>
-            <TextInput style={styles.textInputContainer}>
-              {this.props.productData.price}
-            </TextInput>
+            <TextInput style={styles.textInputContainer}></TextInput>
           </View>
         </View>
         <View style={styles.buttonContainer}>
-          <NativeButton data={'Delete'} onClick={this.deleteProduct} />
           <NativeButton data={'Save'} onClick={this.saveProduct} />
         </View>
       </View>
@@ -59,18 +46,14 @@ class ViewProduct extends React.PureComponent {
   };
 
   render() {
-    return this.props.productData ? (
-      this.renderComponent()
-    ) : (
-      <Text>No data</Text>
-    );
+    return this.renderComponent();
   }
 }
 
 const styles = StyleSheet.create({
   buttonContainer: {
     top: 40,
-    flexDirection: 'row',
+    marginHorizontal: 20,
     justifyContent: 'center',
   },
   mainContainer: {
@@ -112,9 +95,9 @@ const mapDispatchToProps = {
   getProductDetails: home.getProductDetails,
 };
 
-const ViewProductWrapper = connect(
+const AddProductWrapper = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(ViewProduct);
+)(AddProduct);
 
-export default ViewProductWrapper;
+export default AddProductWrapper;

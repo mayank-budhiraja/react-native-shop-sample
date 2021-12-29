@@ -21,7 +21,9 @@ class ViewStore extends React.PureComponent {
     this.props.navigation.navigate(screenNames.VIEW_PRODUCT);
   };
 
-  addProduct = () => {}
+  addProduct = () => {
+    this.props.navigation.navigate(screenNames.ADD_PRODUCT);
+  }
 
   renderItem = ({item}) => {
     return (

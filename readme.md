@@ -1,4 +1,26 @@
-Next: 
+## React-Native-Ecommerce-Shop-Example
+
+
+## Setup
+ - yarn install
+
+## Run
+ - yarn run ios
+    or
+ - yarn run android
+
+
+## Next:
+
+- Save & delete function
+- Add function 
+- Add intial data
+- Persist on iOS
+- Check for DRY and improvement
+- Improve UI
+- Move stylesheet to separate file
+
+## Last: 
 
 - Home List Store - Done
 

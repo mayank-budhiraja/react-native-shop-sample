@@ -44,12 +44,20 @@ const getProductDetails = (id) => {
     const data = getState().home.storeData.products.filter(
       (item) => item.product_ID == id,
     );
-      console.log('findThis2', data)
     dispatch({
       type: actions.GET_PRODUCT_DETAILS,
       payload: data[0],
     });
   };
+}
+
+const deleteProductDetails = () => {
+  return async (dispatch) => {
+    dispatch({
+      type: actions.GET_PRODUCT_DETAILS,
+      payload: null,
+    });
+  }
 }
 
 const getStoreDetails = (id) => {
@@ -66,6 +74,7 @@ export default {
   createStore,
   getStoreDetails,
   getProductDetails,
+  deleteProductDetails,
   selectedStore,
   selectedProduct,
   

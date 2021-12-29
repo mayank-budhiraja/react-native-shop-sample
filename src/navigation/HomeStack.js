@@ -7,6 +7,7 @@ import Login from '../screens/Login';
 import CreateStore from '../screens/CreateStore';
 import ViewStore from '../screens/ViewStore';
 import ViewProduct from '../screens/ViewProduct';
+import AddProduct from '../screens/AddProduct';
 
 const Stack = createStackNavigator();
 
@@ -17,6 +18,7 @@ const HomeStack = ({isAuthenticated}) => {
       <Stack.Screen name={screenNames.CREATE_STORE} component={CreateStore} />
       <Stack.Screen name={screenNames.VIEW_STORE} component={ViewStore} />
       <Stack.Screen name={screenNames.VIEW_PRODUCT} component={ViewProduct} />
+      <Stack.Screen name={screenNames.ADD_PRODUCT} component={AddProduct} />
     </Stack.Navigator>
   ) : (
     <Stack.Navigator screenOptions={{headerShown: false}}>

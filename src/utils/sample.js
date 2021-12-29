@@ -13,7 +13,7 @@ const storeData = [
       },
       {
         product_ID: 2,
-        name: 'Product A',
+        name: 'Product B',
         description: 'Taking care of the product',
         price: '100.00',
         inventory: 3,
