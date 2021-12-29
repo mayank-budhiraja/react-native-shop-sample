@@ -1,15 +1,15 @@
 import React from 'react';
-import {StyleSheet, View, Button} from 'react-native';
+import {StyleSheet, View, Text, Platform, TouchableOpacity} from 'react-native';
 import colors from '../constants/colors';
 import Icon from 'react-native-vector-icons/Ionicons';
+import {Colors} from 'react-native/Libraries/NewAppScreen';
 
 const NativeButton = ({data, onClick}) => {
   return (
     <View style={styles.ButtonContainer}>
-      <Button
-        style={styles.Button}
-        title={data}
-        onPress={() => onClick()}></Button>
+      <TouchableOpacity onPress={() => onClick()}>
+        <Text style={styles.textContainer}>{data}</Text>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -17,13 +17,17 @@ const NativeButton = ({data, onClick}) => {
 export default NativeButton;
 
 const styles = StyleSheet.create({
-  Button: {
-    color: colors.app_primary,
-    height: 100
-  },
   ButtonContainer: {
-    
-    justifyContent: 'space-evenly',
-    margin: 10,
+    padding: 10,
+    marginHorizontal: 120,
+    backgroundColor: colors.app_primary,
+    borderColor: colors.app_primary,
+    borderWidth: 2,
+    borderRadius: 20,
+    flexDirection: 'row',
+    justifyContent: 'center'
   },
+  textContainer: {
+    color: colors.app_secondary
+  }
 });

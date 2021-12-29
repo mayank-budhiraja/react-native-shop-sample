@@ -6,6 +6,8 @@ import {home} from '../store/actions';
 import Card from '../components/Card';
 import screenNames from '../constants/navigation';
 import storeData from '../utils/sample';
+import NativeButton from '../components/NativeButton';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 class Home extends React.PureComponent {
   constructor(props) {
@@ -32,7 +34,7 @@ class Home extends React.PureComponent {
   render() {
 
     return (
-      <View>
+      <SafeAreaView>
         <View>
           {this.props.feedData ? (
             <FlatList
@@ -46,14 +48,9 @@ class Home extends React.PureComponent {
           )}
         </View>
         <View style={styles.ButtonContainer}>
-          <Button
-            style={styles.Button}
-            title="Create Store"
-            onPress={() => this.createStore()}>
-            Create Store
-          </Button>
+          <NativeButton data={'Create Store'} onClick={this.createStore} />
         </View>
-      </View>
+      </SafeAreaView>
     );
   }
 }

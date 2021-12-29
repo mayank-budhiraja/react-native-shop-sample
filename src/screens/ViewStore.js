@@ -6,6 +6,7 @@ import ProductCard from '../components/ProductCard';
 import NativeButton from '../components/NativeButton';
 import Icon from 'react-native-vector-icons/Ionicons';
 import screenNames from '../constants/navigation';
+import Header from '../components/Header';
 
 class ViewStore extends React.PureComponent {
   constructor(props) {
@@ -37,6 +38,7 @@ class ViewStore extends React.PureComponent {
   render() {
     return (
       <View>
+        <Header navigation={this.props.navigation} />
         <View>
           <NativeButton data={'Add Product'} onClick={this.addProduct} />
         </View>
