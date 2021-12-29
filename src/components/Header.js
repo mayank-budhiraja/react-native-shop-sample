@@ -27,8 +27,6 @@ const styles = StyleSheet.create({
     marginLeft: 10,
   },
   subContainer: {
-    borderColor: 'blue',
-    borderWidth: 2,
     marginHorizontal: 20,
     flexDirection: 'row',
     justifyContent: 'flex-start',

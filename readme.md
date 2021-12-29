@@ -9,11 +9,9 @@
     or
  - yarn run android
 
-
 ## Next:
-
 - Save & delete function
-- Add function 
+- Add product function 
 - Add intial data
 - Persist on iOS
 - Check for DRY and improvement
@@ -21,7 +19,6 @@
 - Move stylesheet to separate file
 
 ## Last: 
-
 - Home List Store - Done
 
 - Create Store

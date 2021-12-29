@@ -24,7 +24,7 @@ class ViewStore extends React.PureComponent {
 
   addProduct = () => {
     this.props.navigation.navigate(screenNames.ADD_PRODUCT);
-  }
+  };
 
   renderItem = ({item}) => {
     return (
@@ -39,9 +39,6 @@ class ViewStore extends React.PureComponent {
     return (
       <View>
         <Header navigation={this.props.navigation} />
-        <View>
-          <NativeButton data={'Add Product'} onClick={this.addProduct} />
-        </View>
         <View style={styles.container}>
           {this.props.storeData.length != 0 ? (
             <FlatList
@@ -54,6 +51,9 @@ class ViewStore extends React.PureComponent {
             <Text> No product to display </Text>
           )}
         </View>
+        <View>
+          <NativeButton data={'Add Product'} onClick={this.addProduct} />
+        </View>
       </View>
     );
   }
@@ -64,6 +64,7 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'column',
     justifyContent: 'center',
+    marginBottom: 50,
   },
   textInputContainer: {
     height: 40,
@@ -87,6 +88,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = {
   getStoreDetails: home.getStoreDetails,
   selectedProduct: home.selectedProduct,
+  deleteStoreData: home.deleteStoreData,
 };
 
 const ViewStoreWrapper = connect(

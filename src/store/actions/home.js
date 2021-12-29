@@ -37,7 +37,7 @@ const deleteProduct = (id) => {
       payload: data,
     });
   };
-}
+};
 
 const getProductDetails = (id) => {
   return async (dispatch, getState) => {
@@ -49,7 +49,7 @@ const getProductDetails = (id) => {
       payload: data[0],
     });
   };
-}
+};
 
 const deleteProductDetails = () => {
   return async (dispatch) => {
@@ -57,12 +57,32 @@ const deleteProductDetails = () => {
       type: actions.GET_PRODUCT_DETAILS,
       payload: null,
     });
-  }
-}
+  };
+};
+
+const deleteProductData = (storeID, productID) => {
+  return async (dispatch, getState) => {
+    const feedState = getState().home.feedData;
+
+    const data = feedState.map((item) => {
+      if (item.id == storeID) {
+        return {
+          ...item,
+          products: item.products.filter((i) => i.product_ID != productID),
+        };
+      } else {
+        return {...item};
+      }
+    });
+    //delete feedState[storeID-1].products[productID-1]
+
+    dispatch(createStore(data))
+  };
+};
 
 const getStoreDetails = (id) => {
   return async (dispatch, getState) => {
-    const data = await getState().home.feedData.filter((item) => item.id == id);
+    const data = getState().home.feedData.filter((item) => item.id == id);
     await dispatch({
       type: actions.GET_STORE_DETAILS,
       payload: data[0],
@@ -77,5 +97,5 @@ export default {
   deleteProductDetails,
   selectedStore,
   selectedProduct,
-  
+  deleteProductData,
 };

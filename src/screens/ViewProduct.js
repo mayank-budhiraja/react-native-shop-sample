@@ -4,6 +4,8 @@ import {home} from '../store/actions';
 import {connect} from 'react-redux';
 import NativeButton from '../components/NativeButton';
 import Icon from 'react-native-vector-icons/Ionicons';
+import Header from '../components/Header';
+import screenNames from '../constants/navigation';
 
 class ViewProduct extends React.PureComponent {
   constructor(props) {
@@ -14,13 +16,18 @@ class ViewProduct extends React.PureComponent {
     this.props.getProductDetails(this.props.productID);
   }
 
-  deleteProduct = () => {};
+  deleteProduct = (storeID, productID) => {
+    this.props.deleteProductData(storeID, productID)
+    this.props.getStoreDetails(storeID) //to-do useEffect in previous screen
+    this.props.navigation.navigate(screenNames.VIEW_STORE)
+  };
 
   saveProduct = () => {}
 
   renderComponent = () => {
     return (
       <View>
+        <Header navigation={this.props.navigation} />
         <View style={styles.header}>
           <Text>Product Screen</Text>
         </View>
@@ -51,7 +58,7 @@ class ViewProduct extends React.PureComponent {
           </View>
         </View>
         <View style={styles.buttonContainer}>
-          <NativeButton data={'Delete'} onClick={this.deleteProduct} />
+          <NativeButton data={'Delete'} onClick={() => this.deleteProduct(this.props.storeID,this.props.productID)} />
           <NativeButton data={'Save'} onClick={this.saveProduct} />
         </View>
       </View>
@@ -103,13 +110,15 @@ const styles = StyleSheet.create({
 const mapStateToProps = (state) => {
   return {
     productData: state.home.productData,
+    storeID: state.home.storeID,
     productID: state.home.productID,
   };
 };
 
 const mapDispatchToProps = {
-  deleteProduct: home.deleteProduct,
+  deleteProductData: home.deleteProductData,
   getProductDetails: home.getProductDetails,
+  getStoreDetails: home.getStoreDetails
 };
 
 const ViewProductWrapper = connect(

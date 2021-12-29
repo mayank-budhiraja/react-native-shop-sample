@@ -4,6 +4,7 @@ import {home} from '../store/actions';
 import {connect} from 'react-redux';
 import NativeButton from '../components/NativeButton';
 import Icon from 'react-native-vector-icons/Ionicons';
+import Header from '../components/Header';
 
 class AddProduct extends React.PureComponent {
   constructor(props) {
@@ -17,9 +18,7 @@ class AddProduct extends React.PureComponent {
   renderComponent = () => {
     return (
       <View>
-        <View style={styles.header}>
-          <Text>Add Product</Text>
-        </View>
+        <Header navigation={this.props.navigation} />
         <View style={[styles.container, styles.mainContainer]}>
           <View style={styles.container}>
             <Text style={styles.text}> Name</Text>
@@ -39,7 +38,7 @@ class AddProduct extends React.PureComponent {
           </View>
         </View>
         <View style={styles.buttonContainer}>
-          <NativeButton data={'Save'} onClick={this.saveProduct} />
+          <NativeButton data={'Add Product to Store'} onClick={this.saveProduct} />
         </View>
       </View>
     );
@@ -53,7 +52,7 @@ class AddProduct extends React.PureComponent {
 const styles = StyleSheet.create({
   buttonContainer: {
     top: 40,
-    marginHorizontal: 20,
+    marginHorizontal: 1,
     justifyContent: 'center',
   },
   mainContainer: {
