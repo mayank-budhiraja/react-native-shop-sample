@@ -10,10 +10,11 @@
  - yarn run android
 
 ## Next:
-- Save & delete function
-- Add product function 
-- Add intial data
-- Persist on iOS
+- Edit function 
+- Delete function - done 
+- Add product function - done
+- Add intial data 
+- Persist on iOS 
 - Check for DRY and improvement
 - Improve UI
 - Move stylesheet to separate file

@@ -7,32 +7,32 @@ import Card from '../components/Card';
 import screenNames from '../constants/navigation';
 import storeData from '../utils/sample';
 import NativeButton from '../components/NativeButton';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import {SafeAreaView} from 'react-native-safe-area-context';
 
 class Home extends React.PureComponent {
   constructor(props) {
     super(props);
   }
 
-  componentDidMount(){
+  componentDidMount() {
     this.props.createDataStore(storeData);
   }
 
   createStore = () => {
-    this.props.navigation.navigate(screenNames.CREATE_STORE)
+    this.props.navigation.navigate(screenNames.CREATE_STORE);
   };
 
   viewStore = (info) => {
-    this.props.selectedStore(info)
-    this.props.navigation.navigate(screenNames.VIEW_STORE)
-  }
+    this.props.selectedStore(info);
+    this.props.getStoreDetails(info);
+    this.props.navigation.navigate(screenNames.VIEW_STORE);
+  };
 
   renderItem = ({item}) => {
-    return <Card data={item} onClick={() => this.viewStore(item.id)}/>
+    return <Card data={item} onClick={() => this.viewStore(item.id)} />;
   };
 
   render() {
-
     return (
       <SafeAreaView>
         <View>
@@ -56,9 +56,7 @@ class Home extends React.PureComponent {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    
-  },
+  container: {},
   Button: {
     color: colors.app_primary,
   },
@@ -72,12 +70,14 @@ const styles = StyleSheet.create({
 const mapStateToProps = (state) => {
   return {
     feedData: state.home.feedData,
+    storeID: state.home.storeID,
   };
 };
 
 const mapDispatchToProps = {
+  getStoreDetails: home.getStoreDetails,
   createDataStore: home.createStore,
-  selectedStore: home.selectedStore
+  selectedStore: home.selectedStore,
 };
 
 const HomeWrapper = connect(mapStateToProps, mapDispatchToProps)(Home);

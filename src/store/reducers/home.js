@@ -18,8 +18,6 @@ const home = (state = INITIAL_STATE, action) => {
       return {...state, storeData: action.payload};
     case actions.GET_PRODUCT_DETAILS:
       return {...state, productData: action.payload};
-    case actions.SELECTED_PRODUCT:
-      return {...state, productID: action.payload};
     default:
       return state;
   }

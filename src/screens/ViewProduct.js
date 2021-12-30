@@ -10,19 +10,40 @@ import screenNames from '../constants/navigation';
 class ViewProduct extends React.PureComponent {
   constructor(props) {
     super(props);
+    this.state = {
+      productID: this.props.productData.product_ID,
+      name: this.props.productData.name,
+      description: this.props.productData.description,
+      price: this.props.productData.price,
+      inventory: this.props.productData.inventory,
+    };
   }
 
-  componentDidMount() {
-    this.props.getProductDetails(this.props.productID);
-  }
 
   deleteProduct = (storeID, productID) => {
-    this.props.deleteProductData(storeID, productID)
-    this.props.getStoreDetails(storeID) //to-do useEffect in previous screen
-    this.props.navigation.navigate(screenNames.VIEW_STORE)
+    this.props.deleteProductData(storeID, productID);
+    this.props.getStoreDetails(storeID); //to-do useEffect in previous screen
+    this.props.navigation.navigate(screenNames.VIEW_STORE);
   };
 
-  saveProduct = () => {}
+  handleTextChange = (text, input) => {
+    this.setState({[input]: text});
+  };
+
+  saveProduct = (storeID) => {
+    const {productID, name, description, price} = this.state;
+
+    if (name !== '' && productID !== '' && price !== '') {
+      const payload = {
+        product_ID: productID,
+        name: name,
+        description: description,
+        price: price,
+      };
+      this.props.addProductData(storeID, payload);
+      this.props.navigation.navigate(screenNames.VIEW_STORE);
+    }
+  };
 
   renderComponent = () => {
     return (
@@ -34,32 +55,52 @@ class ViewProduct extends React.PureComponent {
         <View style={[styles.container, styles.mainContainer]}>
           <View style={styles.container}>
             <Text style={styles.text}> Name</Text>
-            <TextInput style={styles.textInputContainer}>
-              {this.props.productData.name}
-            </TextInput>
+            <TextInput
+              style={styles.textInputContainer}
+              onChangeText={(text) => this.handleTextChange(text, 'name')}
+              value={this.state.name}
+            />
           </View>
           <View style={styles.container}>
             <Text style={styles.text}> Description</Text>
-            <TextInput style={styles.textInputContainer}>
-              {this.props.productData.description}
-            </TextInput>
+            <TextInput
+              style={styles.textInputContainer}
+              onChangeText={(text) =>
+                this.handleTextChange(text, 'description')
+              }
+              value={this.state.description}
+            />
           </View>
           <View style={styles.container}>
             <Text style={styles.text}> Product ID </Text>
-            <TextInput style={styles.textInputContainer}>
-              {this.props.productData.product_ID}
-            </TextInput>
+            <TextInput
+              style={styles.textInputContainer}
+              keyboardType="numeric"
+              onChangeText={(text) => this.handleTextChange(text, 'productID')}
+              value={this.state.productID.toString()}
+            />
           </View>
           <View style={styles.container}>
             <Text style={styles.text}> Price </Text>
-            <TextInput style={styles.textInputContainer}>
-              {this.props.productData.price}
-            </TextInput>
+            <TextInput
+              style={styles.textInputContainer}
+              keyboardType="numeric"
+              onChangeText={(text) => this.handleTextChange(text, 'price')}
+              value={this.state.price}
+            />
           </View>
         </View>
         <View style={styles.buttonContainer}>
-          <NativeButton data={'Delete'} onClick={() => this.deleteProduct(this.props.storeID,this.props.productID)} />
-          <NativeButton data={'Save'} onClick={this.saveProduct} />
+          <NativeButton
+            data={'Delete'}
+            onClick={() =>
+              this.deleteProduct(this.props.storeID, this.props.productID)
+            }
+          />
+          <NativeButton
+            data={'Save'}
+            onClick={() => this.saveProduct(this.props.storeID)}
+          />
         </View>
       </View>
     );
@@ -111,14 +152,14 @@ const mapStateToProps = (state) => {
   return {
     productData: state.home.productData,
     storeID: state.home.storeID,
-    productID: state.home.productID,
   };
 };
 
 const mapDispatchToProps = {
   deleteProductData: home.deleteProductData,
   getProductDetails: home.getProductDetails,
-  getStoreDetails: home.getStoreDetails
+  getStoreDetails: home.getStoreDetails,
+  addProductData: home.addProductData,
 };
 
 const ViewProductWrapper = connect(

@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, View, Text, Platform, TouchableOpacity} from 'react-native';
+import {StyleSheet, View, Text, Platform, TouchableOpacity, TouchableHighlight} from 'react-native';
 import colors from '../constants/colors';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
@@ -7,9 +7,9 @@ import {Colors} from 'react-native/Libraries/NewAppScreen';
 const NativeButton = ({data, onClick}) => {
   return (
     <View style={styles.ButtonContainer}>
-      <TouchableOpacity onPress={() => onClick()}>
+      <TouchableHighlight onPress={() => onClick()}>
         <Text style={styles.textContainer}>{data}</Text>
-      </TouchableOpacity>
+      </TouchableHighlight>
     </View>
   );
 };

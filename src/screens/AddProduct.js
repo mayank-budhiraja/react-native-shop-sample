@@ -85,7 +85,6 @@ const styles = StyleSheet.create({
 const mapStateToProps = (state) => {
   return {
     productData: state.home.productData,
-    productID: state.home.productID,
   };
 };
 

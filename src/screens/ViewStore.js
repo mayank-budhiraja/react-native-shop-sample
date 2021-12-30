@@ -8,7 +8,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import screenNames from '../constants/navigation';
 import Header from '../components/Header';
 
-class ViewStore extends React.PureComponent {
+class ViewStore extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -17,8 +17,14 @@ class ViewStore extends React.PureComponent {
     this.props.getStoreDetails(this.props.storeID);
   }
 
+  componentDidUpdate(prevProps){
+    if(prevProps.storeData.products !== this.props.storeData.products){
+      this.props.getStoreDetails(this.props.storeID);
+    }
+  }
+
   viewProduct = (info) => {
-    this.props.selectedProduct(info);
+    this.props.getProductDetails(info);
     this.props.navigation.navigate(screenNames.VIEW_PRODUCT);
   };
 
@@ -88,7 +94,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = {
   getStoreDetails: home.getStoreDetails,
   selectedProduct: home.selectedProduct,
-  deleteStoreData: home.deleteStoreData,
+  getProductDetails: home.getProductDetails,
 };
 
 const ViewStoreWrapper = connect(

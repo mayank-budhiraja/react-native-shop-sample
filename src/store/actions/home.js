@@ -2,7 +2,7 @@ import actions from '../constants';
 
 const createStore = (data) => {
   return async (dispatch) => {
-    dispatch({
+    await dispatch({
       type: actions.CREATE_STORE,
       payload: data,
     });
@@ -11,17 +11,8 @@ const createStore = (data) => {
 
 const selectedStore = (data) => {
   return async (dispatch) => {
-    dispatch({
+    await dispatch({
       type: actions.SELECTED_STORE,
-      payload: data,
-    });
-  };
-};
-
-const selectedProduct = (data) => {
-  return async (dispatch) => {
-    dispatch({
-      type: actions.SELECTED_PRODUCT,
       payload: data,
     });
   };
@@ -32,7 +23,7 @@ const deleteProduct = (id) => {
     const data = getState().home.storeData.products.filter(
       (item) => item.product_ID != id,
     );
-    dispatch({
+    await dispatch({
       type: actions.SELECTED_STORE,
       payload: data,
     });
@@ -44,7 +35,7 @@ const getProductDetails = (id) => {
     const data = getState().home.storeData.products.filter(
       (item) => item.product_ID == id,
     );
-    dispatch({
+    await dispatch({
       type: actions.GET_PRODUCT_DETAILS,
       payload: data[0],
     });
@@ -53,7 +44,7 @@ const getProductDetails = (id) => {
 
 const deleteProductDetails = () => {
   return async (dispatch) => {
-    dispatch({
+    await dispatch({
       type: actions.GET_PRODUCT_DETAILS,
       payload: null,
     });
@@ -76,7 +67,7 @@ const deleteProductData = (storeID, productID) => {
     });
     //delete feedState[storeID-1].products[productID-1]
 
-    dispatch(createStore(data))
+    await dispatch(createStore(data));
   };
 };
 
@@ -90,12 +81,30 @@ const getStoreDetails = (id) => {
   };
 };
 
+const addProductData = (storeID, newProductData) => {
+  return async (dispatch, getState) => {
+    const feedState = getState().home.feedData;
+
+    const data = feedState.map((item) => {
+      if (item.id == storeID) {
+        const newProducts = item.products;
+        newProducts.push(newProductData);
+        return {...item, products: newProducts};
+      } else {
+        return {...item};
+      }
+    });
+
+    await dispatch(createStore(data));
+  };
+};
+
 export default {
   createStore,
   getStoreDetails,
   getProductDetails,
   deleteProductDetails,
   selectedStore,
-  selectedProduct,
+  addProductData,
   deleteProductData,
 };
