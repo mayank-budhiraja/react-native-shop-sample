@@ -119,7 +119,6 @@ const editProductData = (storeID, productID, payload) => {
         }
       }
     }
-    console.log('findThis',data)
     await dispatch(createStore(data));
   };
 };

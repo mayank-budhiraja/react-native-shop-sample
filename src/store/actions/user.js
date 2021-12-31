@@ -1,17 +1,14 @@
 import actions from '../constants';
-import credentials from '../../utils/credentials.json'
 
-const setAuth = (data) => {
+const setAuth = () => {
   return async (dispatch) => {
-      if(data.user == credentials.user && data.pass == credentials.pass){
-        dispatch({
-            type: actions.LOG_IN,
-            payload: true
-          });
-      }
+    dispatch({
+      type: actions.LOG_IN,
+      payload: true,
+    });
   };
 };
 
 export default {
-  setAuth
+  setAuth,
 };

@@ -1,18 +1,34 @@
-import React from 'react';
-import {View, TextInput, StyleSheet, Button} from 'react-native';
+import React, {useEffect} from 'react';
+import {View, TextInput, StyleSheet, TouchableHighlight, Text} from 'react-native';
 import colors from '../constants/colors';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {connect} from 'react-redux';
 import {user} from '../store/actions';
 import NativeButton from '../components/NativeButton';
+import credentials from '../utils/credentials.json';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Login = ({setAuth}) => {
   const [userName, onChangeText] = React.useState(null);
   const [password, onChangeNumber] = React.useState(null);
 
-  setLogin = (user, pass) => {
+  useEffect(() => {
+    isAuth();
+  }, []);
+
+  setLogin = async (user, pass) => {
     const data = {user: user, pass: pass};
-    setAuth(data);
+    if (data.user == credentials.user && data.pass == credentials.pass) {
+      await AsyncStorage.setItem('loggedIN', 'true');
+      setAuth();
+    }
+  };
+
+  isAuth = async () => {
+    const isCheck = await AsyncStorage.getItem('loggedIN');
+    if (isCheck) {
+      setAuth();
+    }
   };
 
   return (
@@ -36,7 +52,9 @@ const Login = ({setAuth}) => {
         />
       </View>
       <View style={styles.ButtonContainer}>
-        <NativeButton data={'Sign In'} onClick={() => this.setLogin(userName, password)} />
+        <TouchableHighlight onPress={() => setLogin(userName, password)}>
+          <Text style={styles.textContainer}>Sign In</Text>
+        </TouchableHighlight>
       </View>
     </View>
   );
@@ -55,17 +73,17 @@ const LoginWrapper = connect(mapStateToProps, mapDispatchToProps)(Login);
 export default LoginWrapper;
 
 const styles = StyleSheet.create({
-  Button: {
-    color: colors.app_primary,
+  textContainer: {
+    color: colors.app_secondary,
   },
   ButtonContainer: {
-    marginHorizontal: 150,
+    marginHorizontal: 100,
     marginTop: 50,
     paddingVertical: 20,
     flexDirection: 'row',
-    justifyContent: 'space-evenly',
     backgroundColor: colors.app_icons,
-    borderRadius: 50,
+    borderRadius: 80,
+    justifyContent: 'center',
   },
   input: {
     height: 40,
