@@ -4,6 +4,7 @@ import colors from '../constants/colors';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {connect} from 'react-redux';
 import {user} from '../store/actions';
+import NativeButton from '../components/NativeButton';
 
 const Login = ({setAuth}) => {
   const [userName, onChangeText] = React.useState(null);
@@ -17,7 +18,7 @@ const Login = ({setAuth}) => {
   return (
     <View style={styles.container}>
       <View style={styles.subcontainer}>
-        <Icon name="home" size={30} color="#900" />
+        <Icon name="ios-people-outline" size={150} color={colors.image_color} />
       </View>
       <View>
         <TextInput
@@ -35,11 +36,7 @@ const Login = ({setAuth}) => {
         />
       </View>
       <View style={styles.ButtonContainer}>
-        <Button
-          style={styles.Button}
-          title="Sign In"
-          onPress={() => setLogin(userName, password)}
-        />
+        <NativeButton data={'Sign In'} onClick={() => this.setLogin(userName, password)} />
       </View>
     </View>
   );
@@ -62,16 +59,20 @@ const styles = StyleSheet.create({
     color: colors.app_primary,
   },
   ButtonContainer: {
+    marginHorizontal: 150,
+    marginTop: 50,
+    paddingVertical: 20,
     flexDirection: 'row',
     justifyContent: 'space-evenly',
-    marginHorizontal: 10,
+    backgroundColor: colors.app_icons,
+    borderRadius: 50,
   },
   input: {
     height: 40,
     margin: 20,
     borderWidth: 1,
     padding: 10,
-    borderColor: colors.app_primary,
+    borderColor: 'gray',
     flexDirection: 'row',
     justifyContent: 'center',
   },
@@ -81,6 +82,8 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    justifyContent: 'center',
+    top: 100,
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
   },
 });

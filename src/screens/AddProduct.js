@@ -6,7 +6,8 @@ import NativeButton from '../components/NativeButton';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Header from '../components/Header';
 import screenNames from '../constants/navigation';
-import colors from '../constants/colors';
+
+import styles from './AddProducts-styles';
 
 class AddProduct extends React.PureComponent {
   constructor(props) {
@@ -105,46 +106,7 @@ class AddProduct extends React.PureComponent {
   }
 }
 
-const styles = StyleSheet.create({
-  noteContainer: {
-    marginTop: 40,
-    marginHorizontal: 20,
-  },
-  ButtonContainer: {
-    marginHorizontal: 120,
-    marginTop: 100,
-    paddingVertical: 20,
-    flexDirection: 'row',
-    justifyContent: 'space-evenly',
-    backgroundColor: colors.app_icons,
-    borderRadius: 50,
-  },
-  mainContainer: {
-    margin: 10,
-    top: 40,
-  },
-  header: {
-    top: 20,
-    flexDirection: 'row',
-    justifyContent: 'center',
-  },
-  container: {
-    marginVertical: 10,
-    flexDirection: 'column',
-    justifyContent: 'center',
-  },
-  textInputContainer: {
-    height: 40,
-    borderColor: 'gray',
-    borderWidth: 1,
-    marginHorizontal: 20,
-    marginVertical: 5,
-  },
-  text: {
-    height: 20,
-    marginHorizontal: 20,
-  },
-});
+
 
 const mapStateToProps = (state) => {
   return {

@@ -1,7 +1,7 @@
 import actions from '../constants';
 
 const INITIAL_STATE = {
-  isAuthenticated: true,
+  isAuthenticated: false,
 };
 
 const user = (state = INITIAL_STATE, action) => {

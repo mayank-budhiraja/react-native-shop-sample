@@ -13,7 +13,7 @@ import {connect} from 'react-redux';
 import {home} from '../store/actions';
 import Card from '../components/Card';
 import screenNames from '../constants/navigation';
-
+import styles from './Home-styles';
 import NativeButton from '../components/NativeButton';
 
 class Home extends React.Component {
@@ -89,43 +89,6 @@ class Home extends React.Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  headTextContainer: {
-    fontSize: 20,
-    color: 'white',
-    fontWeight: 'bold'
-  },
-  flatLisContainer: {
-    marginTop: 40,
-  },
-  topContainer: {
-    paddingVertical: 100,
-    paddingHorizontal: 30,
-    backgroundColor: '#7788FD',
-    alignItems: 'center'
-  },
-  container: {
-    top: -50,
-    backgroundColor: 'white',
-    borderTopRightRadius: 30,
-    borderTopLeftRadius: 30,
-  },
-  Button: {
-    color: colors.app_primary,
-  },
-  ButtonContainer: {
-    marginHorizontal: 20,
-    padding: 10,
-    flexDirection: 'row',
-    justifyContent: 'space-evenly',
-    backgroundColor: colors.app_icons,
-    position: 'absolute',
-    bottom: 40,
-    right: 10,
-    borderRadius: 50,
-  },
-});
 
 const mapStateToProps = (state) => {
   return {
