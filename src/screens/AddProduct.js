@@ -6,6 +6,7 @@ import NativeButton from '../components/NativeButton';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Header from '../components/Header';
 import screenNames from '../constants/navigation';
+import colors from '../constants/colors';
 
 class AddProduct extends React.PureComponent {
   constructor(props) {
@@ -86,11 +87,14 @@ class AddProduct extends React.PureComponent {
             />
           </View>
         </View>
-        <View style={styles.buttonContainer}>
+        <View style={styles.ButtonContainer}>
           <NativeButton
             data={'Add Product to Store'}
             onClick={() => this.saveProduct(this.props.storeID)}
           />
+        </View>
+        <View style={styles.noteContainer}>
+          <Text style={{color: 'red'}}> * non editable fields </Text>
         </View>
       </View>
     );
@@ -102,10 +106,18 @@ class AddProduct extends React.PureComponent {
 }
 
 const styles = StyleSheet.create({
-  buttonContainer: {
-    top: 40,
-    marginHorizontal: 1,
-    justifyContent: 'center',
+  noteContainer: {
+    marginTop: 40,
+    marginHorizontal: 20,
+  },
+  ButtonContainer: {
+    marginHorizontal: 120,
+    marginTop: 100,
+    paddingVertical: 20,
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+    backgroundColor: colors.app_icons,
+    borderRadius: 50,
   },
   mainContainer: {
     margin: 10,

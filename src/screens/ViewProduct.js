@@ -6,6 +6,7 @@ import NativeButton from '../components/NativeButton';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Header from '../components/Header';
 import screenNames from '../constants/navigation';
+import colors from '../constants/colors';
 
 class ViewProduct extends React.PureComponent {
   constructor(props) {
@@ -94,20 +95,23 @@ class ViewProduct extends React.PureComponent {
             />
           </View>
         </View>
-        <View style={styles.buttonContainer}>
+        <View style={{flexDirection: 'row', justifyContent: 'space-evenly',}}>
+        <View style={styles.ButtonContainer}>
           <NativeButton
             data={'Delete'}
             onClick={() =>
               this.deleteProduct(this.props.storeID, this.state.productID)
             }
           />
+        </View>
+        <View style={styles.ButtonContainer}>
           <NativeButton
             data={'Save'}
-            onClick={() =>
-              this.editProduct(this.props.storeID)
-            }
+            onClick={() => this.editProduct(this.props.storeID)}
           />
         </View>
+        </View>
+
         <View style={styles.noteContainer}>
           <Text style={{color: 'red'}}> * non editable fields </Text>
         </View>
@@ -129,11 +133,15 @@ const styles = StyleSheet.create({
     marginTop: 40,
     marginHorizontal: 20,
   },
-  buttonContainer: {
-    top: 40,
-    marginBottom: 40,
+  ButtonContainer: {
+    marginHorizontal: 50,
+    marginTop: 100,
+    paddingVertical: 20,
+    paddingHorizontal: 40,
     flexDirection: 'row',
-    justifyContent: 'center',
+    justifyContent: 'space-evenly',
+    backgroundColor: colors.app_icons,
+    borderRadius: 50,
   },
   mainContainer: {
     margin: 10,

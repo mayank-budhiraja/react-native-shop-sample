@@ -6,6 +6,7 @@ import {
   Alert,
   StyleSheet,
   FlatList,
+  StatusBar,
 } from 'react-native';
 import colors from '../constants/colors';
 import {connect} from 'react-redux';
@@ -14,7 +15,6 @@ import Card from '../components/Card';
 import screenNames from '../constants/navigation';
 
 import NativeButton from '../components/NativeButton';
-import {SafeAreaView} from 'react-native-safe-area-context';
 
 class Home extends React.Component {
   constructor(props) {
@@ -60,11 +60,20 @@ class Home extends React.Component {
 
   render() {
     return (
-      <SafeAreaView>
-        <View>
+      <View style={{backgroundColor: 'white', flex: 1}}>
+        <StatusBar
+          animated={true}
+          translucent
+          backgroundColor={colors.app_primary}
+          barStyle={'dark-content'}
+        />
+        <View style={styles.topContainer}>
+          <Text style={styles.headTextContainer}>React Native Create Shop</Text>
+        </View>
+        <View style={styles.container}>
           {this.props.feedData && this.props.feedData ? (
             <FlatList
-              style={styles.container}
+              style={styles.flatLisContainer}
               data={this.props.feedData}
               renderItem={this.renderItem}
               keyExtractor={(item, index) => item.id.toString()}
@@ -74,22 +83,47 @@ class Home extends React.Component {
           )}
         </View>
         <View style={styles.ButtonContainer}>
-          <NativeButton data={'Create Store'} onClick={this.createStore} />
+          <NativeButton iconName={'add-outline'} onClick={this.createStore} />
         </View>
-      </SafeAreaView>
+      </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  container: {},
+  headTextContainer: {
+    fontSize: 20,
+    color: 'white',
+    fontWeight: 'bold'
+  },
+  flatLisContainer: {
+    marginTop: 40,
+  },
+  topContainer: {
+    paddingVertical: 100,
+    paddingHorizontal: 30,
+    backgroundColor: '#7788FD',
+    alignItems: 'center'
+  },
+  container: {
+    top: -50,
+    backgroundColor: 'white',
+    borderTopRightRadius: 30,
+    borderTopLeftRadius: 30,
+  },
   Button: {
     color: colors.app_primary,
   },
   ButtonContainer: {
+    marginHorizontal: 20,
+    padding: 10,
     flexDirection: 'row',
     justifyContent: 'space-evenly',
-    margin: 10,
+    backgroundColor: colors.app_icons,
+    position: 'absolute',
+    bottom: 40,
+    right: 10,
+    borderRadius: 50,
   },
 });
 

@@ -7,6 +7,8 @@ import {store, persistor} from './store';
 import {NavigationContainer} from '@react-navigation/native';
 import HomeStack from './navigation/HomeStack';
 import {SafeAreaView} from 'react-native';
+//import ErrorBoundary from './utils/ErrorBoundary';
+import ErrorBoundary from 'react-native-error-boundary'
 
 const App = () => {
   return (
@@ -15,7 +17,9 @@ const App = () => {
         <PersistGate loading={null} persistor={persistor}>
           <NavigationContainer>
             <SafeAreaView style={styles.container}>
-              <HomeStack />
+              <ErrorBoundary>
+                <HomeStack />
+              </ErrorBoundary>
             </SafeAreaView>
           </NavigationContainer>
         </PersistGate>

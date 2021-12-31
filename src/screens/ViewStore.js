@@ -4,9 +4,9 @@ import {home} from '../store/actions';
 import {connect} from 'react-redux';
 import ProductCard from '../components/ProductCard';
 import NativeButton from '../components/NativeButton';
-import Icon from 'react-native-vector-icons/Ionicons';
 import screenNames from '../constants/navigation';
 import Header from '../components/Header';
+import colors from '../constants/colors';
 
 class ViewStore extends React.PureComponent {
   constructor(props) {
@@ -50,7 +50,7 @@ class ViewStore extends React.PureComponent {
 
   render() {
     return (
-      <View>
+      <View style={{backgroundColor: 'white', flex: 1}}>
         <Header navigation={this.props.navigation} />
         <View style={styles.container}>
           {this.props.storeData ? (
@@ -64,8 +64,8 @@ class ViewStore extends React.PureComponent {
             <Text> No product to display </Text>
           )}
         </View>
-        <View>
-          <NativeButton data={'Add Product'} onClick={this.addProduct} />
+        <View style={styles.ButtonContainer}>
+          <NativeButton iconName={'add-outline'} onClick={this.addProduct} />
         </View>
       </View>
     );
@@ -73,7 +73,17 @@ class ViewStore extends React.PureComponent {
 }
 
 const styles = StyleSheet.create({
-  flatContainer: {},
+  ButtonContainer: {
+    marginHorizontal: 20,
+    padding: 10,
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+    backgroundColor: colors.app_icons,
+    position: 'absolute',
+    bottom: 40,
+    right: 10,
+    borderRadius: 50,
+  },
   container: {
     flexDirection: 'column',
     justifyContent: 'center',

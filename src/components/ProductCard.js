@@ -6,40 +6,72 @@ import Icon from 'react-native-vector-icons/Ionicons';
 
 const ProductCard = ({data, onClick}) => {
   return (
-    <TouchableOpacity onPress={onClick} style={styles.container}>
-      <View style={styles.imageContainer}>
-        <Icon name="home" size={60} color="#900" />
-      </View>
-      <View style={styles.subContainer}>
-        <Text style={styles.titleContainer}>{data.name}</Text>
-        <Text style={styles.descContainer}>{data.description}</Text>
-      </View>
-    </TouchableOpacity>
+    <View style={styles.shadowContainer}>
+      <TouchableOpacity onPress={onClick} style={styles.container}>
+        <View style={styles.imageContainer}>
+          <Icon name="cart-outline" size={60} color={colors.image_color} />
+        </View>
+        <View style={styles.subContainer}>
+          <View style={styles.headContainer}>
+            <Text style={styles.titleContainer}>{data.name}</Text>
+            <Text style={[styles.titleContainer, styles.priceContainer]} >
+              Rs. {data.price}
+            </Text>
+          </View>
+          <Text style={styles.descContainer} numberOfLines={1} >{data.description}</Text>
+        </View>
+      </TouchableOpacity>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
+  priceContainer: {
+    top: 8,
+    marginLeft: 40,
+    fontSize: 15,
+    color: colors.image_color,
+  },
+  headContainer: {
+    flexDirection: 'row',
+    
+  },
   imageContainer: {
     justifyContent: 'center',
+    marginLeft: 10,
+  },
+  shadowContainer: {
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
   },
   container: {
     flex: 1,
     flexDirection: 'row',
-    marginVertical: 10,
-    marginLeft: 10,
+    backgroundColor: 'white',
+    marginVertical: 20,
+    marginHorizontal: 30,
+    paddingVertical: 20,
+    borderRadius: 5,
   },
   subContainer: {
     flexDirection: 'column',
     marginLeft: 20,
-    justifyContent: 'center',
+    justifyContent: 'space-evenly',
   },
   titleContainer: {
-    color: colors.app_primary,
+    color: colors.text_primary,
     fontSize: 24,
   },
   descContainer: {
-    color: colors.app_primary,
-    fontSize: 18,
+    width: '50%',
+    color: colors.text_secondary,
+    fontSize: 16,
   },
 });
 

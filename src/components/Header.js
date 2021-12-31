@@ -4,13 +4,14 @@ import colors from '../constants/colors';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 
+
 const Header = ({navigation}) => {
   return (
     <>
       <View style={styles.subContainer}>
         <View style={styles.container}>
           <TouchableOpacity onPress={() => navigation.goBack()}>
-            <Icon name="arrow-back" size={30} color={colors.app_buttons} />
+            <Icon name="arrow-back" size={30} color={colors.image_color} />
           </TouchableOpacity>
         </View>
 
@@ -33,7 +34,7 @@ const styles = StyleSheet.create({
     marginVertical: 20,
   },
   titleContainer: {
-    color: colors.app_primary,
+    color: colors.text_secondary,
     fontSize: 24,
   },
 });

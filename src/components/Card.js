@@ -6,42 +6,71 @@ import Icon from 'react-native-vector-icons/Ionicons';
 
 const Card = ({data, onClick}) => {
   return (
-    <TouchableOpacity
-      onPress={() => onClick()}
-      style={styles.container}>
-      <View style={styles.imageContainer}>
-        <Icon name="home" size={60} color="#900" />
-      </View>
-      <View style={styles.subContainer}>
-        <Text style={styles.titleContainer}>{data.title}</Text>
-        <Text style={styles.descContainer}>{data.desc}</Text>
-      </View>
-    </TouchableOpacity>
+    <View style={styles.shadowContainer}>
+      <TouchableOpacity onPress={() => onClick()} style={styles.container}>
+        <View style={styles.imageContainer}>
+          <Icon
+            name="ios-image-outline"
+            size={100}
+            color={colors.image_color}
+          />
+        </View>
+        <View style={styles.subContainer}>
+          <View style={styles.headContainer}>
+            <Text style={styles.titleContainer}>{data.title}</Text>
+          </View>
+          <Text style={styles.descContainer} numberOfLines={2}>
+            {data.desc}
+          </Text>
+        </View>
+      </TouchableOpacity>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
+  headContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: '30%'
+  },
+  shadowContainer: {
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+
+    elevation: 5,
+  },
   imageContainer: {
     justifyContent: 'center',
+    marginLeft: 20,
   },
   container: {
     flex: 1,
     flexDirection: 'row',
+    backgroundColor: 'white',
     marginVertical: 10,
-    marginLeft: 10,
+    marginHorizontal: 20,
+    paddingVertical: 10,
+    borderRadius: 5,
   },
   subContainer: {
     flexDirection: 'column',
     marginLeft: 20,
-    justifyContent: 'center',
+    justifyContent: 'space-evenly',
   },
   titleContainer: {
-    color: colors.app_primary,
+    color: colors.text_primary,
     fontSize: 24,
   },
   descContainer: {
-    color: colors.app_primary,
-    fontSize: 18,
+    width: '36%',
+    color: colors.text_secondary,
+    fontSize: 16,
   },
 });
 
