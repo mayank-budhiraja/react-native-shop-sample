@@ -14,11 +14,15 @@ const ProductCard = ({data, onClick}) => {
         <View style={styles.subContainer}>
           <View style={styles.headContainer}>
             <Text style={styles.titleContainer}>{data.name}</Text>
-            <Text style={[styles.titleContainer, styles.priceContainer]} >
+            <Text style={[styles.titleContainer, styles.priceContainer]}>
               Rs. {data.price}
             </Text>
           </View>
-          <Text style={styles.descContainer} numberOfLines={1} >{data.description}</Text>
+          <View style={styles.descContainer}>
+            <Text ellipsizeMode="tail" numberOfLines={2}>
+              {data.description}
+            </Text>
+          </View>
         </View>
       </TouchableOpacity>
     </View>
@@ -27,51 +31,47 @@ const ProductCard = ({data, onClick}) => {
 
 const styles = StyleSheet.create({
   priceContainer: {
-    top: 8,
-    marginLeft: 40,
+    top: 10,
+    marginLeft: 20,
     fontSize: 15,
     color: colors.image_color,
   },
   headContainer: {
+    top: 10,
     flexDirection: 'row',
-    
   },
   imageContainer: {
     justifyContent: 'center',
     marginLeft: 10,
   },
-  shadowContainer: {
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
-  },
   container: {
-    flex: 1,
     flexDirection: 'row',
     backgroundColor: 'white',
-    marginVertical: 20,
+    marginVertical: 10,
     marginHorizontal: 30,
-    paddingVertical: 20,
-    borderRadius: 5,
+    paddingVertical: 5,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 2,
+      height: 2,
+    },
+    shadowOpacity: 0.15,
+    shadowRadius: 1,
+    elevation: 3,
+    borderRadius: 20,
   },
   subContainer: {
     flexDirection: 'column',
     marginLeft: 20,
-    justifyContent: 'space-evenly',
   },
   titleContainer: {
     color: colors.text_primary,
     fontSize: 24,
   },
   descContainer: {
-    width: '50%',
-    color: colors.text_secondary,
-    fontSize: 16,
+    top: 20,
+    width: 200,
+    height: 80,
   },
 });
 

@@ -1,5 +1,12 @@
 import React from 'react';
-import {View, Text, TextInput, StyleSheet, FlatList, Alert} from 'react-native';
+import {
+  View,
+  Text,
+  TextInput,
+  BackHandler,
+  FlatList,
+  Alert,
+} from 'react-native';
 import {home} from '../store/actions';
 import {connect} from 'react-redux';
 import NativeButton from '../components/NativeButton';
@@ -20,7 +27,21 @@ class AddProduct extends React.PureComponent {
     };
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    this.backHandler = BackHandler.addEventListener(
+      'hardwareBackPress',
+      this.backAction,
+    );
+  }
+
+  backAction = () => {
+    this.props.navigation.navigate(screenNames.VIEW_STORE);
+    return true;
+  };
+
+  componentWillUnmount() {
+    this.backHandler.remove();
+  }
 
   handleTextChange = (text, input) => {
     this.setState({[input]: text});
@@ -36,15 +57,17 @@ class AddProduct extends React.PureComponent {
         description: description,
         price: price,
       };
-      
+
       this.props.addProductData(storeID, payload);
       this.props.navigation.navigate(screenNames.VIEW_STORE);
+    } else {
+      Alert.alert('Hold on', 'Fill the fields');
     }
   };
 
   renderComponent = () => {
     return (
-      <View>
+      <View style={{paddingTop: Platform.OS == 'android' ? 40 : 0}}>
         <Header navigation={this.props.navigation} />
         <View style={[styles.container, styles.mainContainer]}>
           <View style={styles.container}>
@@ -105,8 +128,6 @@ class AddProduct extends React.PureComponent {
     return this.renderComponent();
   }
 }
-
-
 
 const mapStateToProps = (state) => {
   return {

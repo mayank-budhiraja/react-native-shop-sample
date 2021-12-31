@@ -1,5 +1,12 @@
 import React from 'react';
-import {View, Text, TextInput, StyleSheet, FlatList, Alert} from 'react-native';
+import {
+  View,
+  Text,
+  TextInput,
+  BackHandler,
+  FlatList,
+  Alert,
+} from 'react-native';
 import {home} from '../store/actions';
 import {connect} from 'react-redux';
 import NativeButton from '../components/NativeButton';
@@ -18,6 +25,22 @@ class ViewProduct extends React.PureComponent {
       price: this.props.productData.price,
       inventory: this.props.productData.inventory,
     };
+  }
+
+  componentDidMount() {
+    this.backHandler = BackHandler.addEventListener(
+      'hardwareBackPress',
+      this.backAction,
+    );
+  }
+
+  backAction = () => {
+    this.props.navigation.navigate(screenNames.VIEW_STORE);
+    return true;
+  };
+
+  componentWillUnmount() {
+    this.backHandler.remove();
   }
 
   handleTextChange = (text, input) => {
@@ -42,13 +65,13 @@ class ViewProduct extends React.PureComponent {
       };
       this.props.editProductData(storeID, productID, payload);
       this.props.getStoreDetails(storeID);
-      this.props.navigation.push(screenNames.VIEW_STORE);
+      this.props.navigation.navigate(screenNames.VIEW_STORE);
     }
   };
 
   renderComponent = () => {
     return (
-      <View>
+      <View style={{paddingTop: Platform.OS == 'android' ? 40 : 0}}>
         <Header navigation={this.props.navigation} />
         <View style={styles.header}>
           <Text>Product Screen</Text>

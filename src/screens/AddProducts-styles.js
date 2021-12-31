@@ -7,7 +7,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 20,
   },
   ButtonContainer: {
-    marginHorizontal: 120,
+    marginHorizontal: 100,
     marginTop: 100,
     paddingVertical: 20,
     flexDirection: 'row',

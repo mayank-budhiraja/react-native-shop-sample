@@ -50,7 +50,7 @@ class ViewStore extends React.PureComponent {
 
   render() {
     return (
-      <View style={{backgroundColor: 'white', flex: 1}}>
+      <View style={{backgroundColor: 'white', flex: 1, paddingTop: Platform.OS == 'android' ? 40 : 0}}>
         <Header navigation={this.props.navigation} />
         <View style={styles.container}>
           {this.props.storeData ? (

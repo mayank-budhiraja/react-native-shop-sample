@@ -19,9 +19,9 @@ const Card = ({data, onClick}) => {
           <View style={styles.headContainer}>
             <Text style={styles.titleContainer}>{data.title}</Text>
           </View>
-          <Text style={styles.descContainer} numberOfLines={2}>
-            {data.desc}
-          </Text>
+          <View style={styles.descContainer}>
+            <Text style={styles.textContainer}ellipsizeMode='tail' numberOfLines={2}>{data.desc}</Text>
+          </View>
         </View>
       </TouchableOpacity>
     </View>
@@ -32,46 +32,44 @@ const styles = StyleSheet.create({
   headContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    width: '30%'
-  },
-  shadowContainer: {
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-
-    elevation: 5,
   },
   imageContainer: {
     justifyContent: 'center',
     marginLeft: 20,
   },
   container: {
-    flex: 1,
     flexDirection: 'row',
     backgroundColor: 'white',
     marginVertical: 10,
-    marginHorizontal: 20,
+    marginHorizontal: 16,
     paddingVertical: 10,
-    borderRadius: 5,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 2,
+      height: 2,
+    },
+    shadowOpacity: 0.15,
+    shadowRadius: 1,
+    elevation: 3,
+    borderRadius: 20,
   },
   subContainer: {
     flexDirection: 'column',
     marginLeft: 20,
-    justifyContent: 'space-evenly',
   },
   titleContainer: {
     color: colors.text_primary,
     fontSize: 24,
   },
   descContainer: {
-    width: '36%',
-    color: colors.text_secondary,
-    fontSize: 16,
+    top: 20,
+    width: 200, 
+    height: 80
   },
+  textContainer: {
+    color: colors.text_secondary,
+    fontSize: 16
+  }
 });
 
 export default Card;

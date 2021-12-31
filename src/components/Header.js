@@ -1,9 +1,8 @@
 import React from 'react';
-import {Text, View, StyleSheet} from 'react-native';
+import {Text, View, StyleSheet, Platform} from 'react-native';
 import colors from '../constants/colors';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {TouchableOpacity} from 'react-native-gesture-handler';
-
 
 const Header = ({navigation}) => {
   return (
@@ -24,7 +23,7 @@ const Header = ({navigation}) => {
 const styles = StyleSheet.create({
   container: {
     justifyContent: 'space-between',
-    marginRight: 100,
+    marginRight: Platform.OS == 'android' ? 70 : 100,
     marginLeft: 10,
   },
   subContainer: {

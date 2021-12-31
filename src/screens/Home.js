@@ -7,6 +7,7 @@ import {
   StyleSheet,
   FlatList,
   StatusBar,
+  Platform,
 } from 'react-native';
 import colors from '../constants/colors';
 import {connect} from 'react-redux';
@@ -60,11 +61,11 @@ class Home extends React.Component {
 
   render() {
     return (
-      <View style={{backgroundColor: 'white', flex: 1}}>
+      <View style={{backgroundColor: 'white', flex: 1, paddingTop: Platform.OS == 'android' ? 25 : 0}}>
         <StatusBar
           animated={true}
           translucent
-          backgroundColor={colors.app_primary}
+          backgroundColor={'#7788FD'}
           barStyle={'dark-content'}
         />
         <View style={styles.topContainer}>
