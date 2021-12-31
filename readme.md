@@ -9,7 +9,6 @@ Scalable app to build stores and add products using redux-persist
 
 ## Run
  - yarn run ios
-    or
  - yarn run android
 
 ## Android Build
