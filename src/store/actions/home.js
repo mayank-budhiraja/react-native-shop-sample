@@ -81,10 +81,17 @@ const getStoreDetails = (id) => {
   };
 };
 
+const addStoreData = (payload) => {
+  return async (dispatch, getState) => {
+    const data = getState().home.feedData;
+    data.push(payload); //to-do change implementation
+    await dispatch(createStore(data));
+  };
+};
+
 const addProductData = (storeID, newProductData) => {
   return async (dispatch, getState) => {
     const feedState = getState().home.feedData;
-
     const data = feedState.map((item) => {
       if (item.id == storeID) {
         const newProducts = item.products;
@@ -99,12 +106,32 @@ const addProductData = (storeID, newProductData) => {
   };
 };
 
+const editProductData = (storeID, productID, payload) => {
+  return async (dispatch, getState) => {
+    const data = getState().home.feedData;
+
+    for (let i = 0; i < data.length; i++) {
+      if (data[i].id == storeID) {
+        if (data[i].products[i].product_ID == productID) {
+          data[i].products.splice(i, 1);
+          data[i].products.push(payload);
+          break;
+        }
+      }
+    }
+    console.log('findThis',data)
+    await dispatch(createStore(data));
+  };
+};
+
 export default {
   createStore,
+  addStoreData,
   getStoreDetails,
   getProductDetails,
   deleteProductDetails,
   selectedStore,
   addProductData,
   deleteProductData,
+  editProductData,
 };

@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, StyleSheet, FlatList, Alert} from 'react-native';
+import {View, Text, StyleSheet, FlatList, Alert, BackHandler} from 'react-native';
 import {home} from '../store/actions';
 import {connect} from 'react-redux';
 import ProductCard from '../components/ProductCard';
@@ -8,19 +8,26 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import screenNames from '../constants/navigation';
 import Header from '../components/Header';
 
-class ViewStore extends React.Component {
+class ViewStore extends React.PureComponent {
   constructor(props) {
     super(props);
   }
 
   componentDidMount() {
     this.props.getStoreDetails(this.props.storeID);
+    this.backHandler = BackHandler.addEventListener(
+      'hardwareBackPress',
+      this.backAction,
+    );
   }
 
-  componentDidUpdate(prevProps){
-    if(prevProps.storeData.products !== this.props.storeData.products){
-      this.props.getStoreDetails(this.props.storeID);
-    }
+  backAction = () => {
+    this.props.navigation.navigate(screenNames.HOME)
+    return true;
+  };
+
+  componentWillUnmount() {
+    this.backHandler.remove();
   }
 
   viewProduct = (info) => {
@@ -29,7 +36,7 @@ class ViewStore extends React.Component {
   };
 
   addProduct = () => {
-    this.props.navigation.navigate(screenNames.ADD_PRODUCT);
+    this.props.navigation.push(screenNames.ADD_PRODUCT);
   };
 
   renderItem = ({item}) => {
@@ -46,7 +53,7 @@ class ViewStore extends React.Component {
       <View>
         <Header navigation={this.props.navigation} />
         <View style={styles.container}>
-          {this.props.storeData.length != 0 ? (
+          {this.props.storeData ? (
             <FlatList
               style={styles.flatContainer}
               data={this.props.storeData.products}
@@ -86,6 +93,7 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state) => {
   return {
+    feedData: state.home.feedData,
     storeData: state.home.storeData,
     storeID: state.home.storeID,
   };

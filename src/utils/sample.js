@@ -11,27 +11,6 @@ const storeData = [
         price: '100.00',
         inventory: 3,
       },
-      {
-        product_ID: 2,
-        name: 'Product B',
-        description: 'Taking care of the product',
-        price: '100.00',
-        inventory: 3,
-      },
-    ],
-  },
-  {
-    id: 2,
-    title: 'Store B',
-    desc: 'Example B.............',
-    products: [
-      {
-        product_ID: 2,
-        name: 'Product B',
-        description: 'New product',
-        price: '200.00',
-        inventory: 3,
-      },
     ],
   },
 ];

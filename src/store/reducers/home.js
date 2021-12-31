@@ -1,7 +1,8 @@
 import actions from '../constants';
+import storeData from '../../utils/sample';
 
 const INITIAL_STATE = {
-  feedData: [],
+  feedData: storeData,
   storeID: 0,
   productID: 0,
   storeData: [],

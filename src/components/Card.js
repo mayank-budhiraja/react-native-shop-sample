@@ -7,7 +7,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 const Card = ({data, onClick}) => {
   return (
     <TouchableOpacity
-      onPress={onClick}
+      onPress={() => onClick()}
       style={styles.container}>
       <View style={styles.imageContainer}>
         <Icon name="home" size={60} color="#900" />

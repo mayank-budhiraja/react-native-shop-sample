@@ -19,6 +19,9 @@ class ViewProduct extends React.PureComponent {
     };
   }
 
+  handleTextChange = (text, input) => {
+    this.setState({[input]: text});
+  };
 
   deleteProduct = (storeID, productID) => {
     this.props.deleteProductData(storeID, productID);
@@ -26,11 +29,7 @@ class ViewProduct extends React.PureComponent {
     this.props.navigation.navigate(screenNames.VIEW_STORE);
   };
 
-  handleTextChange = (text, input) => {
-    this.setState({[input]: text});
-  };
-
-  saveProduct = (storeID) => {
+  editProduct = (storeID) => {
     const {productID, name, description, price} = this.state;
 
     if (name !== '' && productID !== '' && price !== '') {
@@ -40,8 +39,9 @@ class ViewProduct extends React.PureComponent {
         description: description,
         price: price,
       };
-      this.props.addProductData(storeID, payload);
-      this.props.navigation.navigate(screenNames.VIEW_STORE);
+      this.props.editProductData(storeID, productID, payload);
+      this.props.getStoreDetails(storeID);
+      this.props.navigation.push(screenNames.VIEW_STORE);
     }
   };
 
@@ -74,8 +74,12 @@ class ViewProduct extends React.PureComponent {
           <View style={styles.container}>
             <Text style={styles.text}> Product ID </Text>
             <TextInput
-              style={styles.textInputContainer}
+              style={[
+                styles.textInputContainer,
+                {color: 'red', borderColor: 'red'},
+              ]}
               keyboardType="numeric"
+              editable={false}
               onChangeText={(text) => this.handleTextChange(text, 'productID')}
               value={this.state.productID.toString()}
             />
@@ -94,13 +98,18 @@ class ViewProduct extends React.PureComponent {
           <NativeButton
             data={'Delete'}
             onClick={() =>
-              this.deleteProduct(this.props.storeID, this.props.productID)
+              this.deleteProduct(this.props.storeID, this.state.productID)
             }
           />
           <NativeButton
             data={'Save'}
-            onClick={() => this.saveProduct(this.props.storeID)}
+            onClick={() =>
+              this.editProduct(this.props.storeID)
+            }
           />
+        </View>
+        <View style={styles.noteContainer}>
+          <Text style={{color: 'red'}}> * non editable fields </Text>
         </View>
       </View>
     );
@@ -116,8 +125,13 @@ class ViewProduct extends React.PureComponent {
 }
 
 const styles = StyleSheet.create({
+  noteContainer: {
+    marginTop: 40,
+    marginHorizontal: 20,
+  },
   buttonContainer: {
     top: 40,
+    marginBottom: 40,
     flexDirection: 'row',
     justifyContent: 'center',
   },
@@ -159,7 +173,7 @@ const mapDispatchToProps = {
   deleteProductData: home.deleteProductData,
   getProductDetails: home.getProductDetails,
   getStoreDetails: home.getStoreDetails,
-  addProductData: home.addProductData,
+  editProductData: home.editProductData,
 };
 
 const ViewProductWrapper = connect(

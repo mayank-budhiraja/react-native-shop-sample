@@ -10,10 +10,10 @@
  - yarn run android
 
 ## Next:
-- Edit function 
+- Edit function - done
 - Delete function - done 
 - Add product function - done
-- Add intial data 
+- Add intial data - done
 - Persist on iOS 
 - Check for DRY and improvement
 - Improve UI

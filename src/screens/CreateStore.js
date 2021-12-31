@@ -10,14 +10,27 @@ class CreateStore extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      storeTitle: null,
-      storeDescription: null,
+      storeTitle: '',
+      storeDescription: '',
     };
   }
 
-  viewStore = () => {
-    this.props.navigation.navigate(screenNames.VIEW_STORE)
-  }
+  addStore = () => {
+    if (this.state.storeTitle !== '' && this.state.storeDescription !== '') {
+      const payload = {
+        id: this.props.feedData.length + 1,
+        title: this.state.storeTitle,
+        desc: this.state.storeDescription,
+        products: [],
+      };
+      this.props.addStoreData(payload);
+      this.props.navigation.push(screenNames.HOME);
+    }
+  };
+
+  handleTextChange = (text, input) => {
+    this.setState({[input]: text});
+  };
 
   render() {
     return (
@@ -28,18 +41,21 @@ class CreateStore extends React.PureComponent {
 
         <TextInput
           style={styles.textInputContainer}
-          onChangeText={(text) => onChangeText(text)}
           placeholder="Enter the name of the store"
+          onChangeText={(text) => this.handleTextChange(text, 'storeTitle')}
           value={this.state.storeTitle}
         />
         <TextInput
           style={styles.textInputContainer}
           onChangeText={(text) => onChangeText(text)}
           placeholder="Enter the description for the store"
+          onChangeText={(text) =>
+            this.handleTextChange(text, 'storeDescription')
+          }
           value={this.state.storeDescription}
         />
 
-        <NativeButton data={'Next'} onClick={this.viewStore}/>
+        <NativeButton data={'Next'} onClick={() => this.addStore()} />
       </View>
     );
   }
@@ -64,11 +80,13 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = (state) => {
-  return {};
+  return {
+    feedData: state.home.feedData,
+  };
 };
 
 const mapDispatchToProps = {
-  createStore: home.createStore,
+  addStoreData: home.addStoreData,
 };
 
 const CreateStoreWrapper = connect(

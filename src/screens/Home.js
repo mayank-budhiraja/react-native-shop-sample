@@ -1,22 +1,48 @@
 import React from 'react';
-import {View, Text, Button, Alert, StyleSheet, FlatList} from 'react-native';
+import {
+  View,
+  Text,
+  BackHandler,
+  Alert,
+  StyleSheet,
+  FlatList,
+} from 'react-native';
 import colors from '../constants/colors';
 import {connect} from 'react-redux';
 import {home} from '../store/actions';
 import Card from '../components/Card';
 import screenNames from '../constants/navigation';
-import storeData from '../utils/sample';
+
 import NativeButton from '../components/NativeButton';
 import {SafeAreaView} from 'react-native-safe-area-context';
 
-class Home extends React.PureComponent {
+class Home extends React.Component {
   constructor(props) {
     super(props);
   }
 
   componentDidMount() {
-    this.props.createDataStore(storeData);
+    this.backHandler = BackHandler.addEventListener(
+      'hardwareBackPress',
+      this.backAction,
+    );
   }
+
+  componentWillUnmount() {
+    this.backHandler.remove();
+  }
+
+  backAction = () => {
+    Alert.alert('Hold on!', 'Are you sure you want to go back?', [
+      {
+        text: 'Cancel',
+        onPress: () => null,
+        style: 'cancel',
+      },
+      {text: 'YES', onPress: () => BackHandler.exitApp()},
+    ]);
+    return true;
+  };
 
   createStore = () => {
     this.props.navigation.navigate(screenNames.CREATE_STORE);
@@ -36,7 +62,7 @@ class Home extends React.PureComponent {
     return (
       <SafeAreaView>
         <View>
-          {this.props.feedData ? (
+          {this.props.feedData && this.props.feedData ? (
             <FlatList
               style={styles.container}
               data={this.props.feedData}
