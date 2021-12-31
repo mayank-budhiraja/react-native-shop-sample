@@ -11,5 +11,3 @@
 
 ## Next:
 - Check for DRY and improvement
-- Improve UI - 
-- Move stylesheet to separate file
