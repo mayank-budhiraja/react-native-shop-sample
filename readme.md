@@ -1,5 +1,7 @@
 ## React-Native-Ecommerce-Shop-Example
 
+## Next:
+- Check for DRY and improvements
 
 ## Setup
  - yarn install
@@ -9,5 +11,10 @@
     or
  - yarn run android
 
-## Next:
-- Check for DRY and improvement
+## Build
+
+- yarn run build-ios
+   or
+- yarn run build-android
+
+
