@@ -9,7 +9,7 @@
     "test": "jest",
     "lint": "eslint .",
     "build-ios": "npx react-native run-ios --configuration=release",
-    "build-android": "npx react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/"
+    "build-android": "npx react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/ && cd android && ./gradlew assembleDebug && cd .."
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "^1.15.2",

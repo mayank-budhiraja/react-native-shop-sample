@@ -3,8 +3,6 @@ import {
   StyleSheet,
   View,
   Text,
-  Platform,
-  TouchableOpacity,
   TouchableHighlight,
 } from 'react-native';
 import colors from '../constants/colors';

@@ -1,7 +1,8 @@
 ## React-Native-Ecommerce-Shop-Example
+Scalable app to build stores and add products using redux-persist
 
-## Next:
-- Check for DRY and improvements
+## Demo
+<img src="screenshots/demo-shot.gif" height="400" />
 
 ## Setup
  - yarn install
@@ -11,10 +12,15 @@
     or
  - yarn run android
 
-## Build
+## Android Build
 
-- yarn run build-ios
-   or
 - yarn run build-android
 
+- Apk will be in /android/app/build/outputs/apk/debug/
+
+## iOS Build
+
+- yarn run build-ios
+
+- App file in /Xcode/DerivedData/ProjectFour-crixtfsxysrvieagibyeswzwqffx/Build/Products/Release-iphonesimulator/
 
