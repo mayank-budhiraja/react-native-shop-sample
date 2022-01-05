@@ -1,5 +1,5 @@
-## React-Native-Ecommerce-Shop-Example
-Scalable app to build stores and add products using redux-persist
+## React Native Custom Storefront
+An app where you can create multiple shops/store and add products to them.
 
 ## Demo
 <img src="screenshots/demo-shot.gif" height="400" />
